@@ -1,17 +1,32 @@
+#! /bin/python3
+
 import socket
+from configparser import ConfigParser
 
-udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM, 0)
+def main():
+# Bloco de inicialização #######################################################
+	# Arquivo de configuração
+	cfg			= ConfigParser()
+	cfg.read("./surpflix.ini")
+	# Configurações de servidor
+	local_ip 	= cfg.get('server', 'ip')
+	local_port	= int(cfg.get('server', 'port'))
+	# Iniciando o socket
+	udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM, 0)
+	udp_socket.bind((local_ip, local_port))
+################################################################################
 
-#IP da máquina h1 do dinf 
-local_ip = '10.254.223.29'
-#Porta para rodar o processo
-local_port = 33322
+	while (True):
+		data = udp_socket.recv(1024)
+		print(data.decode())
+		if (data.decode() == 'q'):
+			break
 
-udp_socket.bind((local_ip, local_port))
-
-while (True):
-        data = udp_socket.recv(1024)
-        print(data.decode())
+	udp_socket.close()
 
 
-udp_socket.close()
+
+
+
+if __name__ == "__main__":
+	main()
