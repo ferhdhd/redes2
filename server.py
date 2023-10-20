@@ -1,23 +1,31 @@
 #! /bin/python3
 
 # LIBS #########################################################################
-from config import server_ip, server_port, client_ip, client_port, udp_socket
+from config import server_address, udp_socket
 import time
 import os
+import random
 
 # Variáveis globais ############################################################
-init_return = "Iniciado Conexão!!"
+
+def server_start(client, vc):
+	udp_socket.sendto(vc.encode(), client)
+	return
 
 def main():
-	udp_socket.bind((server_ip, server_port))
+	videos = os.listdir("videos_server")
+
+	udp_socket.bind(server_address)
 	while (True):
-		data = udp_socket.recv(1024).decode()
+		data, client_address = udp_socket.recvfrom(1024)
+		data = data.decode()
+		
 		print(data)
 		if (data == 'start'):
-			udp_socket.sendto(init_return.encode(), (client_ip, client_port))
+			vc = random.choice(videos)
+			server_start(client_address, vc)
 		if(data == 'q'):
 			break
-		time.sleep(5)
 
 	udp_socket.close()
 
