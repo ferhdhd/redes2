@@ -1,24 +1,12 @@
 #! /bin/python3
 
-import socket
-from configparser import ConfigParser
+# LIBS #########################################################################
+from config import server_ip, server_port, client_ip, client_port, udp_socket
+import os
 
 def main():
-# Bloco de inicialização #######################################################
-	# Arquivo de configuração
-	cfg 		= ConfigParser()
-	cfg.read("./initFiles/godp.ini")
-	# Configurações de cliente
-	local_ip 	= cfg.get('client', 'ip')
-	local_port 	= int(cfg.get('client', 'port'))
-	# Configurações de servidor
-	server_ip	= cfg.get('server', 'ip')
-	server_port	= int(cfg.get('server', 'port'))
-	# Iniciando o socket
-	udp_socket 	= socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
-	udp_socket.bind((local_ip, local_port))
-################################################################################
-	
+	udp_socket.bind((client_ip, client_port))
+
 	msg = input()
 	udp_socket.sendto(msg.encode(), (server_ip, server_port))
 
@@ -33,3 +21,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+	os.system("rm -rf __pycache__")

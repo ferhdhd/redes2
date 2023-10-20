@@ -1,29 +1,15 @@
 #! /bin/python3
 
 # LIBS #########################################################################
-import socket
+from config import server_ip, server_port, client_ip, client_port, udp_socket
 import time
-from configparser import ConfigParser
+import os
 
 # Variáveis globais ############################################################
 init_return = "Iniciado Conexão!!"
 
 def main():
-# Bloco de inicialização #######################################################
-	# Arquivo de configuração
-	cfg			= ConfigParser()
-	cfg.read("./initFiles/godp.ini")
-	# Configurações de servidor
-	local_ip 	= cfg.get('server', 'ip')
-	local_port	= int(cfg.get('server', 'port'))
-	# Configurações de client
-	client_ip	= cfg.get('client', 'ip')
-	client_port	= int(cfg.get('client', 'port'))
-	# Iniciando o socket
-	udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM, 0)
-	udp_socket.bind((local_ip, local_port))
-################################################################################
-
+	udp_socket.bind((server_ip, server_port))
 	while (True):
 		data = udp_socket.recv(1024).decode()
 		print(data)
@@ -41,3 +27,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+	os.system("rm -rf __pycache__")
