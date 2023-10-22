@@ -6,12 +6,33 @@ import time
 import os
 import random
 
-# Variáveis globais ############################################################
-
-def server_start(client, vc):
-	udp_socket.sendto(vc.encode(), client)
+# FUNCOES ######################################################################
+def send(msg, client, encode):
+	msg = msg.encode() if encode else msg
+	udp_socket.sendto(msg, client)
 	return
 
+def rcv():
+	return udp_socket.recv(1024).decode()
+
+def server_start(client, vc):
+	send(vc, client, 1)	
+	ret = rcv()
+	if(ret != "N"):
+		return
+	
+	print("Sending " + vc + " video data")
+	window = 512
+	with open("videos_server/" + vc, "rb") as file:
+		while True:
+			file_bin = file.read(window)
+			if not file_bin:
+				break
+			send(file_bin, client, 0)	
+			#print(file_bin)
+	return
+
+# MAIN #########################################################################
 def main():
 	videos = os.listdir("videos_server")
 
