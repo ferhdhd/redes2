@@ -24,12 +24,18 @@ def server_start(client, vc):
 	print("Sending " + vc + " video data")
 	window = 512
 	with open("videos_server/" + vc, "rb") as file:
+		i = 0
 		while True:
 			file_bin = file.read(window)
 			if not file_bin:
 				break
-			send(file_bin, client, 0)	
+			send(file_bin, client, 0)
+			print("Enviado! msg ", + i)
+			i += 1	
 			#print(file_bin)
+	final_msg = "Fim do Arquivo"
+
+	send(final_msg, client, 1)
 	return
 
 # MAIN #########################################################################
