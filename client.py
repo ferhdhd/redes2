@@ -8,27 +8,14 @@ def send(msg):
 	udp_socket.sendto(msg.encode(), server_address)                                     
 	return                                                                                
 
-def rcv(decode):     
-	ret =  udp_socket.recv(1024)                                               
-	ret = ret.decode() if decode else ret
+def rcv():     
+	ret =  udp_socket.recv(1024).decode()                                               
 	return ret
 
 def client_start():
-	ret = rcv(1)
-	print("Creating file " + ret)	
-	file = open("videos_client/" + ret, "wb")
-	
-	send("N")
-
-	ret = rcv(0)	
-	while(ret):
-		file.write(ret)
-		ret = rcv(0)
-		print("Recebi!\n")
-	
-	file.close()
-	print("file created\n")
-	return
+	while True:
+		ret = rcv()
+		print("ROLOU " + ret)
 
 def main():
 	udp_socket.bind(client_address)
@@ -36,9 +23,8 @@ def main():
 	msg = input()
 	send(msg)
 
-	if msg == 'start':
+	if msg == 's':
 		client_start()
-
 	udp_socket.close()
 
 

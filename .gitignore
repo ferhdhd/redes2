@@ -1,2 +1,3 @@
 videos_server/*
 videos_client/*
+__pycache__/*
