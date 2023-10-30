@@ -4,6 +4,7 @@
 from config import server_address, client_address, udp_socket
 import os
 
+# FUNCOES ######################################################################
 def send(msg):                                                          
 	udp_socket.sendto(msg.encode(), server_address)                                     
 	return                                                                                
@@ -12,13 +13,28 @@ def rcv():
 	ret =  udp_socket.recv(1024).decode()                                               
 	return ret
 
+def bind():
+	global client_address
+
+	while True:
+		try:
+			udp_socket.bind(client_address)
+			break
+		except OSError:
+			client_address = (client_address[0], client_address[1] + 1)
+
 def client_start():
 	while True:
 		ret = rcv()
+		if ret == "FINISH":
+			print("SERVER STOP")
+			return
 		print("ROLOU " + ret)
 
+# MAIN #########################################################################
 def main():
-	udp_socket.bind(client_address)
+	bind()
+	print(client_address[0], client_address[1])
 
 	msg = input()
 	send(msg)

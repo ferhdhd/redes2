@@ -12,4 +12,4 @@ test=`echo -e "godp\nfgs\ndinf" | grep -w ${file}`
 echo "${file} Não é um arquivo válido" && \
 exit 2
 
-cp initFiles/${file}.ini ./surpflix.ini
+cp initFiles/${file}.ini ./cfg.ini

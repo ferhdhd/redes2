@@ -41,11 +41,12 @@ def rcv():
 def rnd(last_n):
 	last_n = ((a * last_n) + b) % m
 	return last_n
-	
-def server_start(client):
-	while True:
-		send(str(rnd() % 6 + 1), client)
-		time.sleep(1)
+
+def finish_clients():
+	global client_list
+
+	for client in client_list:
+		send("FINISH", client.address)
 
 # MAIN THREADS #################################################################
 def main_queue():
@@ -54,14 +55,17 @@ def main_queue():
 	global stop_threads
 	
 	while not stop_threads:
-		data, client_address = udp_socket.recvfrom(1024)
-		data = data.decode()
+		data = ""
+		try:
+			data, client_address = udp_socket.recvfrom(1024)
+			data = data.decode()
+		except TimeoutError:
+			continue
 		if (data == 's'):
 			ts = round(time.time() * 1000)
 			add_client(client_address, ts)
-
-	udp_socket.close()
-	
+			print("Cliente novo: ", end="")
+			print(client_address[0], client_address[1])
 
 def main_send():
 	global stop_threads
@@ -71,13 +75,20 @@ def main_send():
 			address = client.address
 			roll = str(client.last_int % 6 + 1)
 			send(roll, address)
-		time.sleep(2)
+		time.sleep(1)
+
 def main_interrupt():
 	global stop_threads
+	udp_socket.settimeout(1)
 	while not stop_threads:
 		inpt = input()
 		if inpt == 'stop':
 			stop_threads = True
+			finish_clients()
+
+
+
+
 
 if __name__ == "__main__":
 	queue_thread 		= threading.Thread(target=main_queue)
