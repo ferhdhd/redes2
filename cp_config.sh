@@ -2,12 +2,12 @@
 
 [[ ! $# -eq 1 ]] && \
 echo -e "\e[1;31mERROR: incorrect number of arguments
-\e[0mUSAGE: cp_config.sh [godp,dinf,fgs]" && \
+\e[0mUSAGE: cp_config.sh [local,dinf]" && \
 exit 1
 
 file=${1}
 
-test=`echo -e "godp\nfgs\ndinf" | grep -w ${file}`
+test=`echo -e "local\ndinf" | grep -w ${file}`
 [[ ! ${test} ]] && \
 echo "${file} Não é um arquivo válido" && \
 exit 2

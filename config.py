@@ -24,9 +24,9 @@ server_port	= int(cfg.get('server', 'port'))
 server_address = (server_ip, server_port)
 
 # Configurações de client
-client_ip = cfg.get('client', 'ip')
+#client_ip = cfg.get('client', 'ip')
 client_port	= int(cfg.get('client', 'port'))
-client_address = (client_ip, client_port)
+#client_address = (client_ip, client_port)
 
 # Iniciando o socket
 udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM, 0)

@@ -1,8 +1,12 @@
 #! /bin/python3
 
 # LIBS #########################################################################
-from config import server_address, client_address, udp_socket
+from config import server_address, client_port, udp_socket
 import os
+import socket
+
+# VARIAVEIS GLOBAIS ############################################################
+client_address = (0, 0)
 
 # FUNCOES ######################################################################
 def send(msg):                                                          
@@ -13,8 +17,16 @@ def rcv():
 	ret =  udp_socket.recv(1024).decode()                                               
 	return ret
 
+def get_ip():
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.connect(("8.8.8.8", 80))
+	local_ip = s.getsockname()[0]
+	return local_ip
+
 def bind():
 	global client_address
+
+	client_address = (get_ip(), client_port)
 
 	while True:
 		try:
