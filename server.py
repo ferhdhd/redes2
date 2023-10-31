@@ -6,6 +6,7 @@ import time
 import os
 import time
 import threading
+import socket
 
 # VARIÁVEIS GLOBAIS ############################################################
 a = 1103515245
@@ -58,9 +59,9 @@ def main_queue():
 		data = ""
 		try:
 			data, client_address = udp_socket.recvfrom(1024)
-			data = data.decode()
-		except TimeoutError:
+		except socket.timeout:
 			continue
+		data = data.decode()
 		if (data == 's'):
 			ts = round(time.time() * 1000)
 			add_client(client_address, ts)
