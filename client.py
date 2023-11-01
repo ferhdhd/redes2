@@ -35,28 +35,54 @@ def bind():
 		except OSError:
 			client_address = (client_address[0], client_address[1] + 1)
 
+def insert_msg_order(msg, msg_order):
+	# Como as mensagens começam em 1, a lógica do array precisou ser feita com este detalhe
+	# msg_order[msg-2] é a posição do pacote anterior recebido
+	# Array de pacotes vazio ou pacote chegou fora de ordem e "pra cima" (chegou antes do pacote esperado)
+	print("Mensagem: " + str(msg))
+	if msg_order == [] or msg > (len(msg_order)+1) or msg_order[msg-2] == 0:
+		for i in range(msg-1):
+			msg_order.append(0)
+		msg_order.append(1)
+	elif msg < len(msg_order):
+		msg_order[msg-1] = 1
+	else:
+		msg_order.append(1)
+	# Pacote chegou fora de ordem (atrasado ou adiantado)
+	if (msg_order[msg-2] == 0 or msg < len(msg_order)) and len(msg_order) > 2:
+		print("msg: " + str(msg))
+		print("msg_order: " + str(msg_order))
+		return 1
+
+	print("msg: " + str(msg))
+	print("msg_order: " + str(msg_order))
+	return 0
+
 def calc_pkg_lost(arr):
 	summ = 0
 	for i in range(len(arr)-1):
-		if arr[i+1] - arr[i] > 1:
+		if arr[i] == 0:
 			summ += 1
-			print("Pacotes Recebidos: " + str(arr[i]) + " e " + str(arr[i+1]))
 	
 	return str(summ)
 
 def client_start():
-	lost_msgs = 0
-    last_msg = 0
-	msg = 0
+	late_pkgs = 0
+	msg_data = []
+	msg_order = []
+
 	while True:
 		ret = rcv()
 		if ret == "FINISH":
 			pkg_lost = calc_pkg_lost(msg_order)
 			print("SERVER STOP")
 			print("UDP PACKAGES LOST: " + pkg_lost)
+			print("UDP PACKAGES OUT OF ORDER: " + str(late_pkgs))
 			return
 		msg = (int(ret.split(',')[0]))
 		msg_data.append(int(ret.split(',')[1]))
+
+		late_pkgs += insert_msg_order(msg, msg_order)
 		
 		print("ROLOU " + ret.split(',')[1])
 

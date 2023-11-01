@@ -79,7 +79,7 @@ def main_send():
 			msg = (str(client.pkg)+","+roll)
 			client.pkg += 1
 			send(msg, address)
-		#time.sleep(1)
+		time.sleep(0.1)
 
 def main_interrupt():
 	global stop_threads
