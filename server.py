@@ -20,6 +20,7 @@ class Client:
 	def __init__(self, address, last_int):
 		self.last_int = last_int
 		self.address = address
+		self.pkg = 1
 
 # FUNCOES ######################################################################
 def add_client(address, last_int):
@@ -75,8 +76,10 @@ def main_send():
 			client.last_int	= rnd(client.last_int)
 			address = client.address
 			roll = str(client.last_int % 6 + 1)
-			send(roll, address)
-		time.sleep(1)
+			msg = (str(client.pkg)+","+roll)
+			client.pkg += 1
+			send(msg, address)
+		#time.sleep(1)
 
 def main_interrupt():
 	global stop_threads

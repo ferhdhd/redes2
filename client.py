@@ -35,13 +35,30 @@ def bind():
 		except OSError:
 			client_address = (client_address[0], client_address[1] + 1)
 
+def calc_pkg_lost(arr):
+	summ = 0
+	for i in range(len(arr)-1):
+		if arr[i+1] - arr[i] > 1:
+			summ += 1
+			print("Pacotes Recebidos: " + str(arr[i]) + " e " + str(arr[i+1]))
+	
+	return str(summ)
+
 def client_start():
+	lost_msgs = 0
+    last_msg = 0
+	msg = 0
 	while True:
 		ret = rcv()
 		if ret == "FINISH":
+			pkg_lost = calc_pkg_lost(msg_order)
 			print("SERVER STOP")
+			print("UDP PACKAGES LOST: " + pkg_lost)
 			return
-		print("ROLOU " + ret)
+		msg = (int(ret.split(',')[0]))
+		msg_data.append(int(ret.split(',')[1]))
+		
+		print("ROLOU " + ret.split(',')[1])
 
 # MAIN #########################################################################
 def main():
