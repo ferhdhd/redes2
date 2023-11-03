@@ -6,28 +6,91 @@ import time
 import argparse
 from configparser import ConfigParser
 
-# Bloco de inicialização #######################################################
-
-# Parser das opções
+# PARSER DAS OPÇÕES ############################################################
 parser = argparse.ArgumentParser(description="DiceRoller")
 parser.add_argument('-i', "--init_file", dest="init",
 default="cfg.ini", help=".ini file to initial setups")
 args = parser.parse_args()
 
-# Arquivo de configuração
+# ARQUIVO DE CONFIGURAÇÃO ######################################################
 cfg			= ConfigParser()
 cfg.read(args.init)
 
-# Configurações de servidor
+# CONFIGURAÇÕES DE SERVIDOR ####################################################
 server_ip 	= cfg.get('server', 'ip')
 server_port	= int(cfg.get('server', 'port'))
 server_address = (server_ip, server_port)
 
-# Configurações de client
-#client_ip = cfg.get('client', 'ip')
+# CONFIGURAÇÕES DE CLIENT ######################################################
 client_port	= int(cfg.get('client', 'port'))
-#client_address = (client_ip, client_port)
 
-# Iniciando o socket
+# INICIANDO O SOCKET ###########################################################
 udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM, 0)
-################################################################################
+
+# STRINGS DE DADO ##############################################################
+d_1 = '''\
+╭────────────────╮
+│                │
+│                │
+│      ╭──╮      │
+│      ╰──╯      │
+│                │
+│                │
+╰────────────────╯\
+'''
+
+d_2 = '''\
+╭────────────────╮
+│           ╭──╮ │
+│           ╰──╯ │
+│                │
+│                │
+│ ╭──╮           │
+│ ╰──╯           │
+╰────────────────╯\
+'''
+
+d_3 = '''\
+╭────────────────╮
+│ ╭──╮           │
+│ ╰──╯           │
+│      ╭──╮      │
+│      ╰──╯      │
+│           ╭──╮ │
+│           ╰──╯ │
+╰────────────────╯\
+'''
+
+d_4 = '''\
+╭────────────────╮
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+│                │
+│                │
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+╰────────────────╯\
+'''
+
+d_5 = '''\
+╭────────────────╮
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+│      ╭──╮      │
+│      ╰──╯      │
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+╰────────────────╯\
+'''
+
+d_6 = '''\
+╭────────────────╮
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+│ ╭──╮      ╭──╮ │
+│ ╰──╯      ╰──╯ │
+╰────────────────╯\
+'''
+

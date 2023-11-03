@@ -1,8 +1,9 @@
 #! /bin/python3
+from config import d_1, d_2, d_3, d_4, d_5, d_6
 
-import socket
-
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(("8.8.8.8", 80))
-local_ip = s.getsockname()[0]
-print(local_ip)
+print(d_1)
+print(d_2)
+print(d_3)
+print(d_4)
+print(d_5)
+print(d_6)

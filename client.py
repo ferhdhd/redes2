@@ -1,7 +1,7 @@
 #! /bin/python3
 
 # LIBS #########################################################################
-from config import server_address, client_port, udp_socket
+from config import server_address, client_port, udp_socket, d_1, d_2, d_3, d_4, d_5, d_6
 import os
 import socket
 
@@ -9,6 +9,15 @@ import socket
 client_address = (0, 0)
 
 # FUNCOES ######################################################################
+def show_die(arr):
+	die_faces = [d_1, d_2, d_3, d_4, d_5, d_6]
+	big = 0
+	for i in range(1, 5):
+		if arr[i] > arr[big]:
+			big = i
+	print("\033[1;31mO face mais rolada foi:\033[0m")
+	print("\033[1;35m" + die_faces[big] + "\033[0m")
+
 def send(msg):                                                          
 	udp_socket.sendto(msg.encode(), server_address)                                     
 	return                                                                                
@@ -36,6 +45,7 @@ def bind():
 			client_address = (client_address[0], client_address[1] + 1)
 
 def insert_msg_order(msg, msg_order):
+	out_of_order = 0
 	# Como as mensagens começam em 1, a lógica do array precisou ser feita com este detalhe
 	# msg_order[msg-2] é a posição do pacote anterior recebido
 	# Array de pacotes vazio ou pacote chegou fora de ordem e "pra cima" (chegou antes do pacote esperado)
@@ -50,13 +60,11 @@ def insert_msg_order(msg, msg_order):
 		msg_order.append(1)
 	# Pacote chegou fora de ordem (atrasado ou adiantado)
 	if (msg_order[msg-2] == 0 or msg < len(msg_order)) and len(msg_order) > 2:
-		print("msg: " + str(msg))
-		print("msg_order: " + str(msg_order))
-		return 1
+		out_of_order = 1
 
-	print("msg: " + str(msg))
-	print("msg_order: " + str(msg_order))
-	return 0
+	#print("msg: " + str(msg))
+	#print("msg_order: " + str(msg_order))
+	return out_of_order
 
 def calc_pkg_lost(arr):
 	summ = 0
@@ -67,6 +75,7 @@ def calc_pkg_lost(arr):
 	return str(summ)
 
 def client_start():
+	arr = [0, 0, 0, 0, 0, 0]
 	late_pkgs = 0
 	msg_data = []
 	msg_order = []
@@ -78,16 +87,25 @@ def client_start():
 			print("SERVER STOP")
 			print("UDP PACKAGES LOST: " + pkg_lost)
 			print("UDP PACKAGES OUT OF ORDER: " + str(late_pkgs))
-			return
-		msg = (int(ret.split(',')[0]))
-		msg_data.append(int(ret.split(',')[1]))
+			break
+		msg, rolled 	= ret.split(',')
+		msg 			= int(msg)
+		rolled			= int(rolled)
+		print(rolled, msg)
+
+		arr[rolled-1] += 1
+		msg_data.append(rolled)
 
 		late_pkgs += insert_msg_order(msg, msg_order)
 		
-		print("ROLOU " + ret.split(',')[1])
-
+		print("ROLOU " + str(rolled))
+	return arr
+	
 # MAIN #########################################################################
 def main():
+	arr = []
+	die = [] * 6;
+
 	bind()
 	print(client_address[0], client_address[1])
 
@@ -95,7 +113,9 @@ def main():
 	send(msg)
 
 	if msg == 's':
-		client_start()
+		arr = client_start()
+	print(arr)	
+	show_die(arr)
 	udp_socket.close()
 
 
