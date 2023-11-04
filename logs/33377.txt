@@ -1,0 +1,425 @@
+====================
+Pacote 1 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 2 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 3 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 4 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 5 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 6 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 7 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 8 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 9 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 10 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 11 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 12 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 13 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 14 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 15 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 16 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 17 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 18 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 19 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 20 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 21 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 22 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 23 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 24 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 25 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 26 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 27 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 28 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 29 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 30 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 31 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 32 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 33 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 34 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 35 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 36 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 37 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 38 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 39 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 40 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 41 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 42 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 43 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 44 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 45 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 46 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 47 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 48 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 49 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 50 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 51 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 52 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 53 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 54 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 55 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 56 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 57 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 58 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 59 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 60 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 61 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 62 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 63 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 64 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 65 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 66 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 67 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 68 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 69 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 70 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 71 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 72 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 73 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 74 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 75 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 76 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 77 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 78 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 79 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 80 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 81 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 82 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 83 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 84 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 85 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 86 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 87 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 88 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 89 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 90 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 91 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 5
+====================
+Pacote 92 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 93 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 94 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 95 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 96 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 97 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 98 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 2
+====================
+Pacote 99 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 3
+====================
+Pacote 100 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 101 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 102 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 6
+====================
+Pacote 103 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+Pacote 104 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 4
+====================
+Pacote 105 recebido!
+Recebido em ordem correta: Não
+Valor do dado recebido: 1
+====================
+FINAL DA TRANSMISSÃO
+Pacotes perdidos: 0
+Pacotes que chegaram fora de ordem: 0
+A face mais rolada foi: 0
