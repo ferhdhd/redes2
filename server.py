@@ -49,12 +49,7 @@ def finish_client(client):
 	global client_list
 	
 	send("FINISH", client.address)
-	while True:	
-		try:
-			ret, addr = udp_socket.recvfrom(1024)
-			break
-		except socket.timeout:
-			continue
+	ret, addr = udp_socket.recvfrom(1024)
 	ret = ret.decode()
 	if (addr == client.address):
 		if (ret == "rstop"):
