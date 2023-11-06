@@ -4,6 +4,7 @@
 from config import server_address, client_port, udp_socket, d_1, d_2, d_3, d_4, d_5, d_6
 import os
 import socket
+import time
 
 # VARIAVEIS GLOBAIS ############################################################
 client_address = (0, 0)
@@ -126,6 +127,7 @@ def client_start():
 		ret = rcv()
 		if ret == "FINISH":
 			msg_stop = "rstop"
+			time.sleep(1)
 			send(msg_stop)
 
 			pkg_lost = calc_pkg_lost(msg_order)

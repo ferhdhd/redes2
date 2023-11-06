@@ -69,7 +69,6 @@ def finish_clients():
 		for client in client_list:
 			print(str(client_list))
 			send("FINISH", client.address)
-			time.sleep(1)
 			try:
 				ret, addr = udp_socket.recvfrom(1024)
 			except socket.timeout:
