@@ -48,8 +48,13 @@ def rnd(last_n):
 def finish_client(client):
 	global client_list
 	
-	send("FINISH", client.address)
-	ret, addr = udp_socket.recvfrom(1024)
+	while True:	
+		try:
+			send("FINISH", client.address)
+			ret, addr = udp_socket.recvfrom(1024)
+			break
+		except socket.timeout:
+			continue
 	ret = ret.decode()
 	if (addr == client.address):
 		if (ret == "rstop"):
