@@ -57,7 +57,8 @@ def insert_msg_order(msg, msg_order):
 	# Array de pacotes vazio ou pacote chegou fora de ordem e "pra cima" (chegou antes do pacote esperado)
 	print("Mensagem: " + str(msg))
 	if msg_order == [] or msg > (len(msg_order)+1) or msg_order[msg-2] == 0:
-		for i in range(msg-1):
+		# Adiciona 0´s do tamanho do array até o tamanho recebido 
+		for i in range(len(msg_order), msg-1):
 			msg_order.append(0)
 		msg_order.append(1)
 	elif msg < len(msg_order):
@@ -83,9 +84,9 @@ def add_msg_log(data, order, out_of_order):
 	
 	msg = "Pacote " + order + " recebido!\n"
 	if out_of_order:
-		msg1 = "Recebido em ordem correta: Sim\n"
-	else:
 		msg1 = "Recebido em ordem correta: Não\n"
+	else:
+		msg1 = "Recebido em ordem correta: Sim\n"
 	msg2 = "Valor do dado recebido: " + data + '\n'
 	client_log.append(header)
 	client_log.append(msg)
@@ -124,6 +125,9 @@ def client_start():
 	while True:
 		ret = rcv()
 		if ret == "FINISH":
+			msg_stop = "rstop"
+			send(msg_stop)
+
 			pkg_lost = calc_pkg_lost(msg_order)
 			print("SERVER STOP")
 			print("UDP PACKAGES LOST: " + pkg_lost)

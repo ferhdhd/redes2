@@ -1,7 +1,7 @@
 #! /bin/python3
 
 # LIBS #########################################################################
-from config import server_address, udp_socket
+from config import server_address, udp_socket, args
 import time
 import os
 import time
@@ -47,9 +47,19 @@ def rnd(last_n):
 
 def finish_clients():
 	global client_list
+	udp_socket.settimeout(1)
 
-	for client in client_list:
-		send("FINISH", client.address)
+	while client_list != []:
+		for client in client_list:
+			send("FINISH", client.address)
+			try:
+				ret, addr = udp_socket.recvfrom(1024)
+			except socket.timeout:
+				continue
+			ret = ret.decode()
+			if (addr == client.address):
+				if (ret == "rstop"):
+					client_list.remove(client)
 
 # MAIN THREADS #################################################################
 def main_queue():
@@ -72,6 +82,12 @@ def main_queue():
 
 def main_send():
 	global stop_threads
+	
+	if args.limit:
+		limit = int(args.limit)
+	else:
+		limit = -1
+
 	while not stop_threads:
 		for client in client_list:
 			client.last_int	= rnd(client.last_int)
@@ -80,6 +96,10 @@ def main_send():
 			msg = (str(client.pkg)+","+roll)
 			client.pkg += 1
 			send(msg, address)
+			if client.pkg > limit:
+				stop_threads = True
+				finish_clients()
+				break
 		time.sleep(msg_range)
 
 def main_inpt_handler():

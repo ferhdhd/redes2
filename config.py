@@ -10,6 +10,7 @@ from configparser import ConfigParser
 parser = argparse.ArgumentParser(description="DiceRoller")
 parser.add_argument('-i', "--init_file", dest="init",
 default="cfg.ini", help=".ini file to initial setups")
+parser.add_argument("-l", "--limit", type=int, help="Limite (inteiro)")
 args = parser.parse_args()
 
 # ARQUIVO DE CONFIGURAÇÃO ######################################################
