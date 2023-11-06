@@ -115,7 +115,7 @@ def main_send():
 			roll = str(client.last_int % 6 + 1)
 			msg = (str(client.pkg)+","+roll)
 			send(msg, address)
-			if client.pkg > limit:
+			if limit != -1 and client.pkg > limit:
 				finish_client(client)
 			client.pkg += 1
 		time.sleep(msg_range)

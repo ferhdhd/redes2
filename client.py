@@ -5,10 +5,10 @@ from config import server_address, client_port, udp_socket, d_1, d_2, d_3, d_4, 
 import os
 import socket
 import time
+from datetime import datetime
 
 # VARIAVEIS GLOBAIS ############################################################
 client_address = (0, 0)
-header = "====================\n"
 client_log = []
 
 # FUNCOES ######################################################################
@@ -77,41 +77,38 @@ def calc_pkg_lost(arr):
 	for i in range(len(arr)-1):
 		if arr[i] == 0:
 			summ += 1
+			add_msg_log(True, str(i+1), False, False, False)
 	
 	return str(summ)
 
-def add_msg_log(data, order, out_of_order):
-	global header
+def add_msg_log(lost, order, out_of_order, init, end):
+	timestamp = time.time()
+
+	data_hora = datetime.fromtimestamp(timestamp)
+	hora = data_hora.strftime("%H:%M")
+
+	msg = str(data_hora.day) + '/' + str(data_hora.month) + '/' + str(data_hora.year) + " - " + str(hora)
 	
-	msg = "Pacote " + order + " recebido!\n"
 	if out_of_order:
-		msg1 = "Recebido em ordem correta: Não\n"
+		msg = msg + " WARNING - Package " + order + " received out of order \n"
+	elif lost:
+		msg = msg + " WARNING - Package " + order + " lost \n"
+	elif init:
+		msg = msg + " SERVER CONNECTED\n"
+	elif end:
+		msg = msg + " SERVER DISCONNECTED\n"
 	else:
-		msg1 = "Recebido em ordem correta: Sim\n"
-	msg2 = "Valor do dado recebido: " + data + '\n'
-	client_log.append(header)
+		msg = msg + " CONFIRMATION - Package " + order + " received\n"
+
 	client_log.append(msg)
-	client_log.append(msg1)
-	client_log.append(msg2)
 
-def add_end_msg_log(pkg_lost, late_pkgs, array):
-	global header
-	maior = 1
-	maior += most_rolled_face(array)
+def add_end_msg_log():
+	msg = "END OF PROGRAM\n"
 
-	msg = "FINAL DA TRANSMISSÃO\n"
-	msg1 = "Pacotes perdidos: " + pkg_lost + "\n"
-	msg2 = "Pacotes que chegaram fora de ordem: " + late_pkgs +'\n'
-	msg3 = "A face mais rolada foi: " + str(maior) + '\n'
-
-	client_log.append(header)
 	client_log.append(msg)
-	client_log.append(msg1)
-	client_log.append(msg2)
-	client_log.append(msg3)
 
 def write_log_file():
-	file_name = str(client_address[1]) + ".txt"	
+	file_name = str(socket.gethostname()) + ".txt"	
 
 	with open(f"logs/{file_name}", "w") as file:
 		file.writelines(client_log)
@@ -129,16 +126,21 @@ def client_start():
 			msg_stop = "rstop"
 			time.sleep(1)
 			send(msg_stop)
+			add_msg_log(False, False, False, False, True)
 
 			pkg_lost = calc_pkg_lost(msg_order)
 			print("SERVER STOP")
 			print("UDP PACKAGES LOST: " + pkg_lost)
 			print("UDP PACKAGES OUT OF ORDER: " + str(late_pkgs))
-			add_end_msg_log(str(pkg_lost), str(late_pkgs), arr)
+			add_end_msg_log()
 			break
 		msg, rolled 	= ret.split(',')
 		msg 			= int(msg)
 		rolled			= int(rolled)
+		
+		if msg == 1:
+			add_msg_log(False, False, False, True, False)
+
 		print(rolled, msg)
 
 		arr[rolled-1] += 1
@@ -152,7 +154,7 @@ def client_start():
 		else:
 			out_or_order = False
 		
-		add_msg_log(str(rolled), str(msg), out_or_order)
+		add_msg_log(False, str(msg), out_or_order, False, False)
 		
 		print("ROLOU " + str(rolled))
 	return arr
