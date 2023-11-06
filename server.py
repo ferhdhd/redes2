@@ -63,12 +63,13 @@ def finish_client(client):
 
 def finish_clients():
 	global client_list
-	udp_socket.settimeout(10)
+	udp_socket.settimeout(4)
 
 	while client_list != []:
 		for client in client_list:
 			print(str(client_list))
 			send("FINISH", client.address)
+			time.sleep(1)
 			try:
 				ret, addr = udp_socket.recvfrom(1024)
 			except socket.timeout:
@@ -78,7 +79,6 @@ def finish_clients():
 			if (addr == client.address):
 				if (ret == "rstop"):
 					client_list.remove(client)
-			time.sleep(1)
 
 # MAIN THREADS #################################################################
 def main_queue():
