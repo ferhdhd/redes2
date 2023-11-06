@@ -67,14 +67,12 @@ def finish_clients():
 
 	while client_list != []:
 		for client in client_list:
-			print(str(client_list))
 			send("FINISH", client.address)
 			try:
 				ret, addr = udp_socket.recvfrom(1024)
 			except socket.timeout:
 				continue
 			ret = ret.decode()
-			print("RET: " + ret)
 			if (addr == client.address):
 				if (ret == "rstop"):
 					client_list.remove(client)
@@ -117,6 +115,7 @@ def main_send():
 			send(msg, address)
 			if limit != -1 and client.pkg > limit:
 				finish_client(client)
+				time.sleep(1)
 			client.pkg += 1
 		time.sleep(msg_range)
 
@@ -134,7 +133,6 @@ def main_inpt_handler():
 			finish_clients()
 		elif inpt[0] == 'r':
 			msg_range = float(inpt.split(" ")[1])
-			print(msg_range)
 
 if __name__ == "__main__":
 	queue_thread 		= threading.Thread(target=main_queue)

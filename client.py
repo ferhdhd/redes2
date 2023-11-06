@@ -56,7 +56,6 @@ def insert_msg_order(msg, msg_order):
 	# Como as mensagens começam em 1, a lógica do array precisou ser feita com este detalhe
 	# msg_order[msg-2] é a posição do pacote anterior recebido
 	# Array de pacotes vazio ou pacote chegou fora de ordem e "pra cima" (chegou antes do pacote esperado)
-	print("Mensagem: " + str(msg))
 	if msg_order == [] or msg > (len(msg_order)+1) or msg_order[msg-2] == 0:
 		# Adiciona 0´s do tamanho do array até o tamanho recebido 
 		for i in range(len(msg_order), msg-1):
@@ -140,8 +139,6 @@ def client_start():
 		
 		if msg == 1:
 			add_msg_log(False, False, False, True, False)
-
-		print(rolled, msg)
 
 		arr[rolled-1] += 1
 		msg_data.append(rolled)
