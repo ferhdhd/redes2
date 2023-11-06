@@ -78,6 +78,7 @@ def finish_clients():
 			if (addr == client.address):
 				if (ret == "rstop"):
 					client_list.remove(client)
+			time.sleep(1)
 
 # MAIN THREADS #################################################################
 def main_queue():
