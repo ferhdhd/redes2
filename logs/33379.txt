@@ -1,7 +1,7 @@
 ====================
 Pacote 1 recebido!
 Recebido em ordem correta: Sim
-Valor do dado recebido: 6
+Valor do dado recebido: 2
 ====================
 Pacote 2 recebido!
 Recebido em ordem correta: Sim
@@ -9,7 +9,7 @@ Valor do dado recebido: 1
 ====================
 Pacote 3 recebido!
 Recebido em ordem correta: Sim
-Valor do dado recebido: 4
+Valor do dado recebido: 2
 ====================
 Pacote 4 recebido!
 Recebido em ordem correta: Sim
@@ -22,6 +22,18 @@ Valor do dado recebido: 4
 Pacote 6 recebido!
 Recebido em ordem correta: Sim
 Valor do dado recebido: 1
+====================
+Pacote 7 recebido!
+Recebido em ordem correta: Sim
+Valor do dado recebido: 6
+====================
+Pacote 8 recebido!
+Recebido em ordem correta: Sim
+Valor do dado recebido: 3
+====================
+Pacote 9 recebido!
+Recebido em ordem correta: Sim
+Valor do dado recebido: 4
 ====================
 FINAL DA TRANSMISSÃO
 Pacotes perdidos: 0

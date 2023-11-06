@@ -45,18 +45,36 @@ def rnd(last_n):
 	last_n = ((a * last_n) + b) % m
 	return last_n
 
+def finish_client(client):
+	global client_list
+	
+	send("FINISH", client.address)
+	while True:	
+		try:
+			ret, addr = udp_socket.recvfrom(1024)
+			break
+		except socket.timeout:
+			continue
+	ret = ret.decode()
+	if (addr == client.address):
+		if (ret == "rstop"):
+			client_list.remove(client)
+
+
 def finish_clients():
 	global client_list
-	udp_socket.settimeout(1)
+	udp_socket.settimeout(10)
 
 	while client_list != []:
 		for client in client_list:
+			print(str(client_list))
 			send("FINISH", client.address)
 			try:
 				ret, addr = udp_socket.recvfrom(1024)
 			except socket.timeout:
 				continue
 			ret = ret.decode()
+			print("RET: " + ret)
 			if (addr == client.address):
 				if (ret == "rstop"):
 					client_list.remove(client)
@@ -64,6 +82,8 @@ def finish_clients():
 # MAIN THREADS #################################################################
 def main_queue():
 	udp_socket.bind(server_address)
+
+	udp_socket.settimeout(1)
 
 	global stop_threads
 	
@@ -94,12 +114,10 @@ def main_send():
 			address = client.address
 			roll = str(client.last_int % 6 + 1)
 			msg = (str(client.pkg)+","+roll)
-			client.pkg += 1
 			send(msg, address)
 			if client.pkg > limit:
-				stop_threads = True
-				finish_clients()
-				break
+				finish_client(client)
+			client.pkg += 1
 		time.sleep(msg_range)
 
 def main_inpt_handler():

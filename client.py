@@ -13,7 +13,7 @@ client_log = []
 # FUNCOES ######################################################################
 def most_rolled_face(arr):
 	big = 0
-	for i in range(1, 5):
+	for i in range(1, 6):
 		if arr[i] > arr[big]:
 			big = i
 	return big
@@ -110,7 +110,7 @@ def add_end_msg_log(pkg_lost, late_pkgs, array):
 	client_log.append(msg3)
 
 def write_log_file():
-	file_name = str(client_port) + ".txt"
+	file_name = str(client_address[1]) + ".txt"	
 
 	with open(f"logs/{file_name}", "w") as file:
 		file.writelines(client_log)
