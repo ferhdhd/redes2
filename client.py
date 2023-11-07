@@ -12,6 +12,8 @@ client_address = (0, 0)
 client_log = []
 
 # FUNCOES ######################################################################
+
+# Recebe o array que representa as faces de um dado e define qual foi 'tirada' mais vezes
 def most_rolled_face(arr):
 	big = 0
 	for i in range(1, 6):
@@ -19,26 +21,31 @@ def most_rolled_face(arr):
 			big = i
 	return big
 
+# Printa o desenho da face mais tirada no terminal
 def show_die(arr):
 	die_faces = [d_1, d_2, d_3, d_4, d_5, d_6]
 	big = most_rolled_face(arr)
 	print("\033[1;31mO face mais rolada foi:\033[0m")
 	print("\033[1;35m" + die_faces[big] + "\033[0m")
 
+# Codifica e envia a mensagem para o servidor
 def send(msg):                                                          
 	udp_socket.sendto(msg.encode(), server_address)                                     
 	return                                                                                
 
+# Recebe e decodifica a mensagem recebida do servidor
 def rcv():     
 	ret =  udp_socket.recv(1024).decode()                                               
 	return ret
 
+# Descobre o IP da máquina onde está sendo executado o programa
 def get_ip():
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	s.connect(("8.8.8.8", 80))
 	local_ip = s.getsockname()[0]
 	return local_ip
 
+# Vincula as informações do cliente com o socket
 def bind():
 	global client_address
 
@@ -51,6 +58,8 @@ def bind():
 		except OSError:
 			client_address = (client_address[0], client_address[1] + 1)
 
+# A cada mensagem recebida do servidor, determina se ela chegou atrasada/adiantada
+# e insere ela no array de mensagens recebidas do servidor
 def insert_msg_order(msg, msg_order):
 	out_of_order = 0
 	# Como as mensagens começam em 1, a lógica do array precisou ser feita com este detalhe
@@ -71,6 +80,8 @@ def insert_msg_order(msg, msg_order):
 
 	return out_of_order
 
+# Após a conexão com o servidor ser fechada, calcula
+# a quantidade de pacotes/mensagens perdidas
 def calc_pkg_lost(arr):
 	summ = 0
 	for i in range(len(arr)-1):
@@ -80,6 +91,9 @@ def calc_pkg_lost(arr):
 	
 	return str(summ)
 
+# Adiciona uma linha no arquivo de log de acordo com a mensagem recebida,
+# que pode ser de pacote perdido, pacote fora de ordem, servidor conectado
+# e servidor deconectado 
 def add_msg_log(lost, order, out_of_order, init, end):
 	timestamp = time.time()
 
@@ -101,17 +115,24 @@ def add_msg_log(lost, order, out_of_order, init, end):
 
 	client_log.append(msg)
 
+# Adiciona mensagem de fim de programa no arquivo de log
 def add_end_msg_log():
 	msg = "END OF PROGRAM\n"
 
 	client_log.append(msg)
 
+# Escreve o arquivo de log de fato, onde o arquivo vai ter o nome:
+# "nome_da_maquina".txt em um diretório que precisa existir previamente
+# chamado "logs"
 def write_log_file():
 	file_name = str(socket.gethostname()) + ".txt"	
 
 	with open(f"logs/{file_name}", "w") as file:
 		file.writelines(client_log)
 
+# Gerencia o recebimento de mensagens enviadas pelo servidor, separa
+# a ordem da mensagem do dado em si e trata estas informações com a
+# ajuda das funções já descritas acima
 def client_start():
 	arr = [0, 0, 0, 0, 0, 0]
 	late_pkgs = 0

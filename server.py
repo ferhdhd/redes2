@@ -24,27 +24,34 @@ class Client:
 		self.pkg = 1
 
 # FUNCOES ######################################################################
+
+# Cria e adiciona um cliente na lista de clientes cadastrados no servidor
 def add_client(address, last_int):
 	new_client = Client(address, last_int)
 	client_list.insert(0, new_client)
 
+# Remove um cliente específico da lista de clientes
 def remove_client(address):
 	for client in client_list:
 		if client.address == address:
 			client_list.remove(client)
 			return
 
+# Codifica e envia uma mensagem para o cliente
 def send(msg, client):
 	udp_socket.sendto(msg.encode(), client)
 	return
 
+# Recebe e decodifica uma mesagem recebida de um cliente
 def rcv():
 	return udp_socket.recv(1024).decode()
 
+# Função que gera um número aleatório que é utilizado para calcular a rolagem do dado
 def rnd(last_n):
 	last_n = ((a * last_n) + b) % m
 	return last_n
 
+# Finaliza a comunicação com um cliente e o remove da lista de clientes cadastrados no servidor
 def finish_client(client):
 	global client_list
 	
@@ -61,6 +68,7 @@ def finish_client(client):
 			client_list.remove(client)
 
 
+# Finaliza a comunicação com todos os clientes e os remove da lista de clientes cadastrados
 def finish_clients():
 	global client_list
 	udp_socket.settimeout(4)
@@ -78,6 +86,10 @@ def finish_clients():
 					client_list.remove(client)
 
 # MAIN THREADS #################################################################
+
+# Thread responsável por cuidar da lista de clientes ativos
+# Fica a todo momento ouvindo possíveis mensagens de clientes
+# Se for do tipo 's' adiciona ele na lista
 def main_queue():
 	udp_socket.bind(server_address)
 
@@ -98,6 +110,11 @@ def main_queue():
 			print("Cliente novo: ", end="")
 			print(client_address[0], client_address[1])
 
+# Thread responsável por enviar mensagens para os clientes
+# cadastrados no servidor em um intervalo de tempo especificado
+# na variável msg_range (que por padrão é 0.5, mas pode ser alterado
+# durante a execução do servidor). Se existir a flag -l, envia o
+# número especificado após ela. 
 def main_send():
 	global stop_threads
 	
@@ -119,6 +136,11 @@ def main_send():
 			client.pkg += 1
 		time.sleep(msg_range)
 
+# Thread responsável por lidar com os inputs 'stop' e 'r'.
+# O stop para finaliza a conexão com todos os clientes e
+# finaliza todas as threads ativas. Já o input r espera um
+# novo número que vai servir como novo intervalo de tempo
+# para envio de mensagens 
 def main_inpt_handler():
 	print("Quando quiser mudar a frequência de envio das mensagens, pode digitar 'r 5', onde 5 é o intervalo desejado (em segundos), por exemplo")
 	print("O tempo padrão de envio das mensagens é 0.5")
