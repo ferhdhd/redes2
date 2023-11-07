@@ -132,7 +132,7 @@ def write_log_file():
 
 # Gerencia o recebimento de mensagens enviadas pelo servidor, separa
 # a ordem da mensagem do dado em si e trata estas informações com a
-# ajuda das funções já descritas acima
+# ajuda das funções já descritas acima	
 def client_start():
 	arr = [0, 0, 0, 0, 0, 0]
 	late_pkgs = 0
